@@ -1,68 +1,70 @@
-# Lower Serio River Hydraulic Modelling
+# Lower Serio River | Computational Hydraulic Modelling
 
-**1D steady and unsteady HEC-RAS analysis · Python post-processing · comparison with supplied River2D results**
+**HEC-RAS 1D steady and unsteady analysis · numerical sensitivity · Python post-processing · comparison with a supplied River2D result**
 
-An engineering study of approximately **14.3 km of the lower Serio River**, downstream of Crema, Italy. The project examines how roughness, boundary conditions and numerical discretization affect predicted water levels, and how steady 1D, unsteady 1D and spatially distributed 2D results complement one another.
+This engineering portfolio documents the analytical work performed for an academic study of approximately **14.3 km** of the lower Serio River in Lombardy, Italy. It demonstrates hydraulic scenario analysis, flood-wave routing, computational quality checks, and scientific programming.
 
-The authoritative technical source is the [corrected 77-page report](docs/technical-report.pdf). This repository presents its findings and an independently runnable summary-figure workflow. It is **not yet an end-to-end reproducible hydraulic simulation package**.
+**Publication scope:** The original river geometry, supplied hydrograph, course models, River2D mesh and results, photographs, imagery and the full academic report are **not distributed** here. The repository shares analysis code, original summary graphics, selected derived indicators, methodology, and engineering interpretation. It is not a complete hydraulic-model distribution.
 
-## Selected findings
+## Engineering highlights
 
-| Finding | Reported result | Interpretation |
-|---|---:|---|
-| Modelled channel length | 14,329 m | Base HEC-RAS geometry: 27 cross sections |
-| Steady flood discharge | 559.2 m³/s | Supplied 200-year scenario, not an observed event |
-| Mean peak-flow roughness WSE envelope | 0.524 m | nMAX minus nMIN; maximum 0.850 m at XS6 |
-| Unsteady downstream peak | 533.14 m³/s | U50_2s benchmark; upstream peak 559.17 m³/s |
-| Simulated peak attenuation / delay | 4.65% / 5.96 h | Flood routing over the modelled reach |
-| Mean absolute 1D–2D WSE difference | 0.305 m | Five representative sections; model comparison |
-| River2D displayed boundary-flow discrepancy | **3.53%** | Outflow exceeds inflow; cause unverified |
+| Analysis | Selected model result |
+|---|---|
+| 1D steady scenarios | 25 m³/s ordinary flow and 559.2 m³/s 200-year peak-flow scenario |
+| Peak-flow Manning sensitivity | Mean nMAX–nMIN water-surface envelope: **0.524 m**; maximum **0.850 m** at XS6 |
+| Unsteady routing benchmark | **50 m** nominal section spacing; **2 s** computational time step (U50_2s) |
+| Flood-wave routing | **559.17 → 533.14 m³/s** peak discharge; **4.65%** attenuation; **5.96 h** peak delay |
+| 1D–2D water levels | **0.305 m** mean absolute WSE difference over five representative sections |
+| Model-quality caveat | Supplied 2D boundary-flow readouts differ by **3.53%**, reason unverified |
 
-![Steady 1D versus supplied 2D water levels](figures/wse-comparison.svg)
+These are **simulation results, not observed measurements or field-validated predictions**. The 2D solution was supplied; our contribution was its extraction, processing, numerical checking, and comparison with the 1D results.
 
-*Fresh plot of report Table 5.2, using its published signed differences. Differences are not errors against observations. Small rounding differences occur between displayed WSE values and reported differences.*
+![Manning roughness envelope](figures/roughness-envelope.svg)
+![Steady 1D versus supplied 2D WSE differences](figures/wse-comparison.svg)
 
-## Methodology
+*Original SVG visualizations generated from selected rounded, derived summary values. They do not reproduce any course map or model geometry.*
 
-1. **Steady HEC-RAS:** evaluate 25 m³/s ordinary flow and 559.2 m³/s peak flow; test section-specific minimum, nominal and maximum Manning roughness and normal/critical boundary conditions. Adopt nMAX with Normal–Normal boundaries as the study benchmark.
-2. **Unsteady HEC-RAS:** route the supplied flood hydrograph through interpolated 100 m and 50 m geometries; compare 10 s, 5 s and 2 s time steps, with 1 h cases as stress tests. Select **U50_2s** after numerical convergence checks. Downstream normal-depth slope: 0.0015.
-3. **Supplied River2D solution:** post-process the existing 6,761-node / 13,187-element solution. Sample S08, S10, S12, S16 and S18 at 2 m intervals; retain wet samples with h > 0.02 m. Compare mean wet 2D WSE with steady peak 1D WSE.
+## What the project demonstrates
 
-See [methodology](docs/methodology.md), [results](docs/results.md), [limitations](docs/limitations.md) and [reproducibility](docs/reproducibility.md).
+- **Hydraulic modelling:** 1D steady water-surface profiling, ordinary/peak discharge scenarios, bridge-zone diagnostics, and levee representation.
+- **Numerical sensitivity:** section-specific Manning roughness scenarios, boundary-condition assessment, 50 m/100 m unsteady discretization, and 2 s/5 s/10 s timestep checks.
+- **Flood-wave analysis:** transient routing, downstream peak attenuation, delay, and mass/volume-accounting diagnostics.
+- **Scientific programming:** archived Python analysis workflows, HDF extraction, River2D cross-section interpolation, visualization, and comparison of hydraulic variables.
+- **Technical judgment:** careful distinction among computational checks, model comparison, and observational validation.
 
-## Scope and technical honesty
+## Read the technical case study
 
-The study developed and assessed the 1D models. **River2D results were supplied and post-processed; they were not independently re-simulated, calibrated or field-validated.** The displayed River2D flows are Qin = 559.000 and Qout = 578.730 m³/s, a difference of +19.730 m³/s (3.53% of Qin). Its cause is not established.
+- [Portfolio case study](docs/portfolio-case-study.md)
+- [Methodology](docs/methodology.md)
+- [Quantitative results](docs/results.md)
+- [Limitations](docs/limitations.md)
+- [Reproducibility and input requirements](docs/reproducibility.md)
 
-Numerical convergence and extraction checks support implementation consistency, not predictive accuracy. The comparison is not a validated flood map, erosion assessment or design certification. S08 crosses an internal mesh gap; its integrated discharge is omitted. The 2D footprint does not cover the entire 1D reach.
+## Code and reproducibility
 
-## Run the public summary workflow
+The repository includes all **seven archived Appendix D source listings** in [scripts/archived](scripts/archived/). They were recovered from the non-distributed project report and matched against its SHA-256 digests. Six are analytical workflows requiring the corresponding original input files; the seventh hourly hydrograph interpolation listing is an **incomplete fragment** and is preserved as such.
 
-Python 3.10 or newer; **no external packages**:
+To reproduce the public **summary charts** with Python 3.10+ (standard library only):
 
-```sh
-python scripts/build_summary_figures.py
-```
+    python scripts/build_summary_figures.py
 
-This regenerates the two SVG charts from the small, attributed CSV tables in `data/processed/`. It does not run HEC-RAS or River2D and does not reconstruct a hydrograph from peak statistics. Read [reproducibility notes](docs/reproducibility.md) before attempting to use the report's archived code listings.
+That command redraws the two supplied SVG charts from the small CSV tables in [data/processed](data/processed/). It **does not run HEC-RAS or River2D** or independently regenerate the reported hydraulic results.
 
-## Repository structure
+See [code overview](scripts/archived/README.md) and [reproducibility details](docs/reproducibility.md) before running the archived analysis workflows.
 
-```text
-docs/                 Technical report, methods, results and release notes
-data/processed/       Selected rounded report-table values and provenance
-figures/              Original SVG summary charts generated from those values
-scripts/              Portable summary-figure generation
-outreach/             LinkedIn announcement draft and carousel plan
-CITATION.cff          Repository citation metadata
-LICENSE               MIT license for project-owned code only
-THIRD_PARTY_NOTICES.md Attribution and rights boundaries
-```
+## Repository layout
 
-## Attribution and citation
+| Path | Contents |
+|---|---|
+| scripts/archived/ | Seven SHA-256-verified Python source listings |
+| scripts/build_summary_figures.py | Independently runnable chart generation |
+| data/processed/ | Small, attributed rounded result summaries |
+| figures/ | Original SVG result charts |
+| docs/ | Portfolio case study, methodology, results, limitations and reproducibility |
+| outreach/ | LinkedIn announcement copy and carousel outline |
 
-Maintained by [Amir Shokri](https://github.com/amirshokri17). The project uses supplied course geometry, hydrograph and River2D results; their provision is acknowledged without implying authorship of those inputs. The repository owner confirmed redistribution permission for supplied course models/data and report images on 8 November 2026. This permission does not assign them an MIT license.
+## Academic provenance and responsible use
 
-The corrected report has no named author or publication date on its title page; repository attribution does not establish sole authorship of every input or report component. See [rights and attribution](THIRD_PARTY_NOTICES.md) and [citation metadata](CITATION.cff). No DOI or formal release is claimed.
+The underlying hydraulic geometry, hydrograph and River2D solution were supplied for an academic exercise. Their authorship and ownership are not claimed here. They are intentionally omitted, as are course imagery and the full report. The **MIT license applies only to project-owned code**, not to proprietary software or third-party inputs. Please see [rights and attribution](THIRD_PARTY_NOTICES.md).
 
-Technical references, as cited in report §7.1: Chow (1959), *Open-Channel Hydraulics*; Brunner (2020), *HEC-RAS Hydraulic Reference Manual*, Version 6.0 Beta; USACE HEC-RAS online user documentation; Steffler and Blackburn (2002), *River2D: Introduction to Depth Averaged Modeling and User's Manual*. These references do not establish the software versions used for the project.
+**No independent field calibration, flood-hazard validation, erosion prediction, or engineering design certification is claimed.**

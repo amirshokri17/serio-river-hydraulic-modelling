@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If this portfolio or its analysis code informs your work, please cite this repository. The supplied academic model inputs are not included."
+title: "Lower Serio River: Computational Hydraulic Modelling and Model Intercomparison"
+type: software
+authors:
+  - family-names: Shokri
+    given-names: Amir
+repository-code: "https://github.com/amirshokri17/serio-river-hydraulic-modelling"
+url: "https://github.com/amirshokri17/serio-river-hydraulic-modelling"
+abstract: "Code, derived summary indicators, and engineering documentation for HEC-RAS steady/unsteady analysis and post-processing of a supplied River2D solution. The underlying course models and datasets are not redistributed."
+keywords:
+  - hydraulic modelling
+  - HEC-RAS
+  - River2D
+  - flood routing
+  - Python
+  - numerical sensitivity

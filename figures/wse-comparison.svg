@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+<title id="title">Steady 1D versus supplied River2D</title>
+<desc id="desc">Signed WSE difference: River2D mean wet samples minus HEC-RAS steady peak. S08: -0.304 m; S10: +0.013 m; S12: +0.098 m; S16: -0.730 m; S18: -0.381 m</desc>
+<rect width="1000" height="560" fill="#f6f9fb"/>
+<g font-family="Arial, sans-serif">
+<text x="48" y="54" font-size="28" fill="#183247">Steady 1D versus supplied River2D</text>
+<text x="48" y="88" font-size="17" fill="#183247">Signed WSE difference: River2D mean wet samples minus HEC-RAS steady peak</text>
+<text x="48" y="124" font-size="15" fill="#183247">Unit: m</text>
+<line x1="530" y1="145" x2="530" y2="435" stroke="#8096a6"/>
+<text x="48" y="188" font-size="18" fill="#183247">S08</text>
+<rect x="397.00" y="165" width="133.00" height="30" rx="3" fill="#375b83"/>
+<text x="544" y="188" font-size="18" fill="#183247">-0.304</text>
+<text x="48" y="241" font-size="18" fill="#183247">S10</text>
+<rect x="530.00" y="218" width="5.69" height="30" rx="3" fill="#087e8b"/>
+<text x="549.6875" y="241" font-size="18" fill="#183247">+0.013</text>
+<text x="48" y="294" font-size="18" fill="#183247">S12</text>
+<rect x="530.00" y="271" width="42.88" height="30" rx="3" fill="#087e8b"/>
+<text x="586.875" y="294" font-size="18" fill="#183247">+0.098</text>
+<text x="48" y="347" font-size="18" fill="#183247">S16</text>
+<rect x="210.62" y="324" width="319.38" height="30" rx="3" fill="#375b83"/>
+<text x="544" y="347" font-size="18" fill="#183247">-0.730</text>
+<text x="48" y="400" font-size="18" fill="#183247">S18</text>
+<rect x="363.31" y="377" width="166.69" height="30" rx="3" fill="#375b83"/>
+<text x="544" y="400" font-size="18" fill="#183247">-0.381</text>
+<text x="48" y="478" font-size="16" fill="#183247">Table 5.2 | Mean absolute difference: 0.305 m | S08 has an internal mesh gap</text>
+<text x="48" y="509" font-size="15" fill="#183247">Source: corrected Serio River report | Rounded published table values</text>
+<text x="48" y="536" font-size="15" fill="#183247">Model results; no independent field validation claimed.</text>
+</g></svg>
