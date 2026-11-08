@@ -14,6 +14,6 @@
 <rect x="530.00" y="218" width="305.67" height="30" rx="3" fill="#087e8b"/>
 <text x="849.6666666666667" y="241" font-size="18" fill="#183247">+0.524</text>
 <text x="48" y="478" font-size="16" fill="#183247">Table 3.3 | Ordinary: 25 m3/s | Peak: 559.2 m3/s | Scenario range, not uncertainty bounds</text>
-<text x="48" y="509" font-size="15" fill="#183247">Source: corrected Serio River report | Rounded published table values</text>
+<text x="48" y="509" font-size="15" fill="#183247">Source: study-derived rounded summary results</text>
 <text x="48" y="536" font-size="15" fill="#183247">Model results; no independent field validation claimed.</text>
 </g></svg>

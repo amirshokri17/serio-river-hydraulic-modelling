@@ -23,6 +23,6 @@
 <rect x="363.31" y="377" width="166.69" height="30" rx="3" fill="#375b83"/>
 <text x="544" y="400" font-size="18" fill="#183247">-0.381</text>
 <text x="48" y="478" font-size="16" fill="#183247">Table 5.2 | Mean absolute difference: 0.305 m | S08 has an internal mesh gap</text>
-<text x="48" y="509" font-size="15" fill="#183247">Source: corrected Serio River report | Rounded published table values</text>
+<text x="48" y="509" font-size="15" fill="#183247">Source: study-derived rounded summary results</text>
 <text x="48" y="536" font-size="15" fill="#183247">Model results; no independent field validation claimed.</text>
 </g></svg>

@@ -42,7 +42,7 @@ def chart(title, subtitle, rows, maximum, unit, footer):
                   f'width="{abs(end-zero):.2f}" height="30" rx="3" fill="{color}"/>',
                   label(max(zero, end) + 14, y + 23, f"{value:+.3f}")]
     parts += [label(48, 478, footer, 16),
-              label(48, 509, "Source: corrected Serio River report | Rounded published table values", 15),
+              label(48, 509, "Source: study-derived rounded summary results", 15),
               label(48, 536, "Model results; no independent field validation claimed.", 15),
               '</g></svg>']
     return '\n'.join(parts) + '\n'
